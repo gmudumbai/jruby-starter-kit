@@ -1,0 +1,19 @@
+FROM jruby:9.1.15.0
+
+RUN apt-get -y update && apt-get -y upgrade
+
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
+RUN mkdir -p /opt/jruby-starter-kit
+WORKDIR /opt/jruby-starter-kit
+
+ENV HOME /opt/jruby-starter-kit
+
+RUN echo "gem: --no-rdoc --no-ri" >> ~/.gemrc
+RUN gem install bundler
+
+ADD Gemfile /opt/jruby-starter-kit
+ADD Gemfile.lock /opt/jruby-starter-kit
+
+RUN bundle install -j 4

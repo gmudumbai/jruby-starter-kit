@@ -1,0 +1,9 @@
+version: '1'
+
+services:
+  ubuntu:
+    container_name: jruby-starter-kit
+    build: .
+    volumes:
+      - ${PWD}:/opt/jruby-starter-kit
+    tty: true
